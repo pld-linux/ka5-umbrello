@@ -1,18 +1,42 @@
-%define		kdeappsver	18.04.0
-%define		qtver		5.3.2
+%define		kdeappsver	18.12.0
+%define		qtver		5.9.0
 %define		kaname		umbrello
-Summary:	Juk
+Summary:	Umbrello
 Name:		ka5-%{kaname}
-Version:	18.04.0
+Version:	18.12.0
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/applications/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	4535bb8b0b5c3655e92f5f9f96977007
+# Source0-md5:	e4998fc4e92d2b1420b5fee4fc33e1ce
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
+BuildRequires:	Qt5Gui-devel
+BuildRequires:	Qt5PrintSupport-devel
+BuildRequires:	Qt5Svg-devel
+BuildRequires:	Qt5Test-devel
+BuildRequires:	Qt5WebKit-devel
+BuildRequires:	Qt5Widgets-devel
+BuildRequires:	Qt5Xml-devel
 BuildRequires:	cmake >= 2.8.12
-BuildRequires:	kf5-extra-cmake-modules >= 1.4.0
+BuildRequires:	gettext-devel
+BuildRequires:	kf5-extra-cmake-modules >= 5.53.0
+BuildRequires:	kf5-karchive-devel
+BuildRequires:	kf5-kcompletion-devel
+BuildRequires:	kf5-kconfig-devel
+BuildRequires:	kf5-kcoreaddons-devel
+BuildRequires:	kf5-kcrash-devel
+BuildRequires:	kf5-kdelibs4support-devel
+BuildRequires:	kf5-kdoctools-devel
+BuildRequires:	kf5-ki18n-devel
+BuildRequires:	kf5-kiconthemes-devel
+BuildRequires:	kf5-kio-devel
+BuildRequires:	kf5-ktexteditor-devel
+BuildRequires:	kf5-kwidgetsaddons-devel
+BuildRequires:	kf5-kwindowsystem-devel
+BuildRequires:	kf5-kxmlgui-devel
+BuildRequires:	libxml2-devel
+BuildRequires:	libxslt-devel
 BuildRequires:	qt5-build >= %{qtver}
 BuildRequires:	rpmbuild(macros) >= 1.164
 BuildRequires:	shared-mime-info
@@ -21,7 +45,17 @@ BuildRequires:	xz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Umbrello.
+Umbrello is a Unified Modelling Language (UML) modelling tool and code
+generator. It can create diagrams of software and other systems in the
+industry-standard UML format, and can also generate code from UML
+diagrams in a variety of programming languages.
+
+Features
+
+- Supported formats: XMI
+- Several type of diagrams supported: use case, class, sequence,
+  collaboration, state, activity, component, deployment, entity
+  relationship
 
 %prep
 %setup -q -n %{kaname}-%{version}
