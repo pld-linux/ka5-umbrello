@@ -1,15 +1,15 @@
-%define		kdeappsver	23.04.0
+%define		kdeappsver	23.04.1
 %define		kframever	5.94.0
 %define		qtver		5.15.2
 %define		kaname		umbrello
 Summary:	Umbrello
 Name:		ka5-%{kaname}
-Version:	23.04.0
+Version:	23.04.1
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	a7483d1ac4f5b7f5580ca896cf20f345
+# Source0-md5:	ba3f46a7515e0e70d8da14d5ed1a226c
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5Gui-devel
@@ -48,6 +48,7 @@ BuildRequires:	rpmbuild(macros) >= 1.164
 BuildRequires:	shared-mime-info
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
+Requires:	%{name}-data = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -76,6 +77,18 @@ Apidocs for %{kaname}.
 %description apidocs -l pl.UTF-8
 Dokumentacja API dla %{kaname}.
 
+%package data
+Summary:	Data files for %{kaname}
+Summary(pl.UTF-8):	Dane dla %{kaname}
+Group:		X11/Applications
+BuildArch:	noarch
+
+%description data
+Data files for %{kaname}.
+
+%description data -l pl.UTF-8
+Dane dla %{kaname}.
+
 %prep
 %setup -q -n %{kaname}-%{version}
 
@@ -98,11 +111,18 @@ rm -rf $RPM_BUILD_ROOT
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files -f %{kaname}.lang
+%files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/po2xmi5
 %attr(755,root,root) %{_bindir}/umbrello5
 %attr(755,root,root) %{_bindir}/xmi2pot5
+
+%files apidocs
+%defattr(644,root,root,755)
+%{_datadir}/umbrello5/apidoc
+
+%files data -f %{kaname}.lang
+%defattr(644,root,root,755)
 %{_desktopdir}/org.kde.umbrello.desktop
 %{_iconsdir}/hicolor/128x128/apps/umbrello.png
 %{_iconsdir}/hicolor/16x16/apps/umbrello.png
@@ -117,7 +137,3 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/umbrello5
 %exclude %{_datadir}/umbrello5/apidoc
 %{_docdir}/qt5-doc/umbrello.qch
-
-%files apidocs
-%defattr(644,root,root,755)
-%{_datadir}/umbrello5/apidoc
