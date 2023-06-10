@@ -1,15 +1,15 @@
-%define		kdeappsver	23.04.1
+%define		kdeappsver	23.04.2
 %define		kframever	5.94.0
 %define		qtver		5.15.2
 %define		kaname		umbrello
 Summary:	Umbrello
 Name:		ka5-%{kaname}
-Version:	23.04.1
+Version:	23.04.2
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	ba3f46a7515e0e70d8da14d5ed1a226c
+# Source0-md5:	a47bdc36421662577fd611a4ac48956f
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5Gui-devel
